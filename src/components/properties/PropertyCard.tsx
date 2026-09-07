@@ -1,4 +1,8 @@
-export function PropertyCard({title, location, price, image, type}) {
+import type { Property } from "../../types/property";
+
+type PropertyCardProps = Omit<Property, "id">;
+
+export function PropertyCard({title, location, price, image, type}: PropertyCardProps) {
     return (
         <article className="property-card">
               <img

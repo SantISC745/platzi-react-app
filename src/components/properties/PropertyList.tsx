@@ -1,6 +1,11 @@
 import { PropertyCard } from "./PropertyCard";
+import type { Property } from "../../types/property";
 
-export function PropertyList({properties}) {
+interface PropertyListProps {
+    properties: Property[];
+}
+
+export function PropertyList({properties}: PropertyListProps) {
     if (properties.length === 0) {
         return (
             <section className="properties-section">
@@ -16,7 +21,7 @@ export function PropertyList({properties}) {
             <div className="properties-grid">
                 {
                     properties.map(({id, image, location, price, title, type}) => (
-                        <PropertyCard title={title} location={location} price={price} image={image} type={type}/>
+                        <PropertyCard key={id} title={title} location={location} price={price} image={image} type={type}/>
                     ))
                 }
             </div>
