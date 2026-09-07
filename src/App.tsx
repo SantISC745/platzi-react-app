@@ -5,19 +5,20 @@ import { PropertyList } from "./components/properties/PropertyList";
 import { SearchBar } from "./components/ui/SearchBar";
 import { properties } from "./data/properties";
 import { filterProperties } from "./utils/filterProperties";
+import type { Property } from "./types/property";
 
 function App() {
-  const [city, setCity] = useState()
-  const [search, setSearch] = useState()
-  const [propertiesFromAPI, setPropertiesFromAPI] = useState([])
+  const [city, setCity] = useState('')
+  const [search, setSearch] = useState('')
+  const [propertiesFromAPI, setPropertiesFromAPI] = useState<Property[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const timerId = setTimeout(() => {
       try {
         setPropertiesFromAPI(properties)
-      } catch (error) {
+      } catch {
         setError('No pudimos cargar las propiedades')
       }
       finally {
@@ -51,7 +52,7 @@ function App() {
             isLoading 
               ? <p>Cargando propiedades...</p> 
                 : error 
-                ? <p>¡Ha ocurrido un error!</p> 
+                ? <p>{error}</p> 
               : <PropertyList properties={filteredProperties}/>
           }
       </main>
