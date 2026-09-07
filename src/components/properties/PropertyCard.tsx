@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import type { Property } from "../../types/propertyType";
 
 export function PropertyCard({ title, location, price, image, type }: Property) {
@@ -16,3 +17,25 @@ export function PropertyCard({ title, location, price, image, type }: Property) 
     </article>
   );
 }
+=======
+import type { Property } from "../../types/property";
+
+type PropertyCardProps = Omit<Property, "id">;
+
+export function PropertyCard({title, location, price, image, type}: PropertyCardProps) {
+    return (
+        <article className="property-card">
+              <img
+                src={image ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThcrXg9HIdYCdOamCgyjpRiJ89KUT3ET3ktMIabatBsw&s=10'}
+                alt={title}
+              />
+              <div className="property-card-content">
+                <h4>{title}</h4>
+                <p>{location}</p>
+                <p>{type ?? 'Tipo no especificado'}</p>
+                <strong>${price} / noche</strong>
+              </div>
+            </article>
+    );
+}
+>>>>>>> 93aea2dfe2c203a385d1f01492394e2c991137ee
